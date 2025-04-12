@@ -7,6 +7,8 @@ const router = express.Router();
 router.post('/sms', async (req, res) => {
   try {
     const smsData = req.body;
+console.log(smsData,"smsData");
+console.log(req.body,"reqbody");
 
     if (!Array.isArray(smsData)) {
       return res.status(400).json({ success: false, message: 'Expected an array of SMS' });
