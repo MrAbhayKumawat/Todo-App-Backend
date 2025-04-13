@@ -17,7 +17,7 @@ const smsSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: flase,
+    required: false,
   },
   createdAt: {
     type: Date,
