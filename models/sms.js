@@ -3,21 +3,21 @@ import mongoose from 'mongoose';
 const smsSchema = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
+    required: false,
     unique: true,
   },
   sender: {
     type: String,
-    required: true,
+    required: false,
   },
   body: {
     type: String,
-    required: true,
+    required: false,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: flase,
   },
   createdAt: {
     type: Date,
