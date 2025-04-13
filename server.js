@@ -19,7 +19,7 @@ ConnectToDb();
 
 // Use Routes
 app.use('/api', authRouter);
-app.use('/api', UserAuthMiddleware, todosRouter);
+app.use('/api', todosRouter);
 app.use('/api', smsRouter);
 // Port listen
 const PORT = process.env.PORT || 7000;
