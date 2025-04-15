@@ -8,6 +8,7 @@ import ConnectToDb from "./DB/DataBase.js";
 import authRouter from "./routes/authRouter.js";
 import todosRouter from "./routes/todosRouter.js";
 import smsRouter from "./routes/smsRouter.js";
+import User from "./models/authmodel.js";
 
 
 dotenv.config();
@@ -18,28 +19,6 @@ app.use(cors());
 
 // Connect to DB
 await ConnectToDb(); // Ensure DB connection completes before continuing
-
-// User schema
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: false,
-    unique: true,
-    trim: true,
-  },
-  username: {
-    type: String,
-    required: false,
-    unique: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
-
-const User = mongoose.model("User", userSchema);
 
 // Routes
 app.use("/api", authRouter);
