@@ -39,31 +39,35 @@ export const login = async (req, res) => {
   }
 };
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
   try {
-    const userExist = await User.findOne({ email });
+    const { email, username, password } = req.body;
 
-    if (userExist) {
-      return res
-        .status(409)
-        .json({ message: "User Already Exists", data: userExist });
+    // Validate input
+    if (!password) {
+      return res.status(400).json({ message: "Password fields are required" });
     }
 
-    const hashedPassword = await hashPassword(password);
-    const userdata = await User.create({
-      name,
+
+    // Hash password
+
+    // Create user
+    const user = new User({
       email,
-      password: hashedPassword,
+      username,
+      password: password,
     });
 
+    await user.save();
+
     res.status(201).json({
-      message: "Registration Successful",
-      data: userdata,
+      user: {
+        id: user._id,
+        email: user.email,
+        username: user.username,
+      },
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Something went wrong",
-      error: error.message,
-    });
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
