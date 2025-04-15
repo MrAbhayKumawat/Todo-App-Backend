@@ -7,6 +7,7 @@ import authRouter from './routes/authRouter.js';
 import todosRouter from './routes/todosRouter.js';
 import smsRouter from './routes/smsRouter.js';
 import { UserAuthMiddleware } from './middleware/UserAuthMiddleware.js';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
