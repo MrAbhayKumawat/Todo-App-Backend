@@ -72,3 +72,25 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+export const getusers = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.find({});
+    if (!user) {
+      return res.status(404).json({ message: "Users not found" });
+    }
+
+    res.status(200).json({
+      message: "Users Fetch Successful",
+     data:{user}
+      token: token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      error: error.message,
+    });
+  }
+};
