@@ -85,7 +85,6 @@ export const getusers = async (req, res) => {
     res.status(200).json({
       message: "Users Fetch Successful",
      data:{user}
-      token: token,
     });
   } catch (error) {
     res.status(500).json({
